@@ -1,7 +1,7 @@
 package com.example.genshinimpactjunit5springboot.controllers;
 
 import com.example.genshinimpactjunit5springboot.models.Hero;
-import com.example.genshinimpactjunit5springboot.services.HeroesService;
+import com.example.genshinimpactjunit5springboot.services.impl.HeroesServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/genshin-heroes")
 public class HeroesController {
 
-    private final HeroesService genshinHeroesService;
+    private final HeroesServiceImpl genshinHeroesService;
 
     @Autowired
-    public HeroesController(HeroesService genshinHeroesService) {
+    public HeroesController(HeroesServiceImpl genshinHeroesService) {
         this.genshinHeroesService = genshinHeroesService;
     }
 

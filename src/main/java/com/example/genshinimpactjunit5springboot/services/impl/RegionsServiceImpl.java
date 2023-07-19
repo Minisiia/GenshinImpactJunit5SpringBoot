@@ -1,7 +1,8 @@
-package com.example.genshinimpactjunit5springboot.services;
+package com.example.genshinimpactjunit5springboot.services.impl;
 
 import com.example.genshinimpactjunit5springboot.models.Region;
 import com.example.genshinimpactjunit5springboot.repositories.RegionsRepository;
+import com.example.genshinimpactjunit5springboot.services.interfaces.RegionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,12 +12,12 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class RegionsService {
+public class RegionsServiceImpl implements RegionsService {
 
     private final RegionsRepository genshinRegionsRepository;
 
     @Autowired
-    public RegionsService(RegionsRepository genshinRegionsRepository) {
+    public RegionsServiceImpl(RegionsRepository genshinRegionsRepository) {
         this.genshinRegionsRepository = genshinRegionsRepository;
     }
 

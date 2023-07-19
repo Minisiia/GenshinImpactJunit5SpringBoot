@@ -5,12 +5,16 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "genshin_heroes")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Hero {
     @Id
     @Column(name = "id")

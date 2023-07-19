@@ -1,7 +1,8 @@
-package com.example.genshinimpactjunit5springboot.services;
+package com.example.genshinimpactjunit5springboot.services.impl;
 
 import com.example.genshinimpactjunit5springboot.models.Hero;
 import com.example.genshinimpactjunit5springboot.repositories.HeroesRepository;
+import com.example.genshinimpactjunit5springboot.services.interfaces.HeroesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,12 +12,12 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class HeroesService {
+public class HeroesServiceImpl implements HeroesService {
 
     private final HeroesRepository genshinHeroesRepository;
 
     @Autowired
-    public HeroesService(HeroesRepository genshinHeroesRepository) {
+    public HeroesServiceImpl(HeroesRepository genshinHeroesRepository) {
         this.genshinHeroesRepository = genshinHeroesRepository;
     }
 

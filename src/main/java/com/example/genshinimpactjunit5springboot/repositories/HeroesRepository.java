@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface HeroesRepository extends JpaRepository<Hero, Integer> {
 
     @Query(value = "SELECT genshin_heroes.name FROM genshin_heroes JOIN genshin_regions ON genshin_regions.id = genshin_heroes.genshin_region_id WHERE genshin_regions.location=? AND genshin_heroes.weapon = ?", nativeQuery = true)
