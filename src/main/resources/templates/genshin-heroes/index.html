@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<div th:each="genshinHero : ${heroes}">
+    <a th:href="@{/genshin-heroes/{id}(id=${genshinHero.getId()})}"
+       th:text="${genshinHero.getName() + ', ' + genshinHero.getElement()}">user</a>
+</div>
+<br/>
+<hr/>
+<a href="/genshin-heroes/new">Create new genshin hero</a>
+<br/>
+<hr/>
+<a href="/index.html">Home</a>
+<br/>
+<hr/>
+
+<h4>Find Some Heroes By Name</h4>
+<form th:method="post" th:action="@{/genshin-heroes/find-heroes-by-name}">
+    <label for="myName">Enter name: </label>
+    <input type="text" th:value="${myName}" id="myName" name="myName" placeholder="Diluc"/>
+    <br/>
+    <input type="submit" value="find!"/>
+</form>
+<br/>
+<div th:if="${heroesByNameList != null}">
+    <div th:each="paramHero : ${heroesByNameList}">
+        <p th:utext="${'Name: <b>' + paramHero.getName() + '</b>, Element: <b>' + paramHero.getElement() + '</b>, Weapon: <b>' + paramHero.getWeapon() + '</b>, Rarity: <b>' + paramHero.getRarity() + '</b>'}"></p>
+    </div>
+</div>
+<hr/>
+
+<h4>Find Some Heroes By Rarity</h4>
+<form th:method="post" th:action="@{/genshin-heroes/find-heroes-by-rarity}">
+    <label for="myRarity">Enter rarity: </label>
+    <input type="text" th:value="${myRarity}" id="myRarity" name="myRarity" placeholder="5"/>
+    <br/>
+    <input type="submit" value="find!"/>
+</form>
+<br/>
+<div th:if="${heroesByRarityList != null}">
+    <div th:each="paramHero : ${heroesByRarityList}">
+        <p th:utext="${'Name: <b>' + paramHero.getName() + '</b>, Element: <b>' + paramHero.getElement() + '</b>, Weapon: <b>' + paramHero.getWeapon() + '</b>, Rarity: <b>' + paramHero.getRarity() + '</b>'}"></p>
+    </div>
+</div>
+<hr/>
+<h4>Update Hero's Name By Id</h4>
+<form th:method="post" th:action="@{/genshin-heroes/update-hero-name-by-id}">
+    <label for="myUpdateId">Enter id: </label>
+    <input type="text" th:value="${myUpdateId}" id="myUpdateId" name="myUpdateId" placeholder="2"/>
+    <br/>
+
+    <label for="myUpdateName">Enter name: </label>
+    <input type="text" th:value="${myUpdateName}" id="myUpdateName" name="myUpdateName" placeholder="Sayu"/>
+    <br/>
+    <input type="submit" value="update!"/>
+</form>
+<br/>
+<hr/>
+
+<h4>Delete Hero By Name</h4>
+<form th:method="post" th:action="@{/genshin-heroes/delete-by-name}">
+    <label for="myDeleteName">Enter name: </label>
+    <input type="text" th:value="${myDeleteName}" id="myDeleteName" name="myDeleteName" placeholder="Diluc"/>
+    <br/>
+    <input type="submit" value="delete!"/>
+</form>
+<hr/>
+
+<h4>Find Some Heroes Names With Weapon From Some Region</h4>
+<form th:method="post" th:action="@{/genshin-heroes/my-form}">
+    <label for="myLocation">Enter location: </label>
+    <input type="text" th:value="${myLocation}" id="myLocation" name="myLocation" placeholder="Eastern Teyvat"/>
+    <br/>
+    <label for="myWeapon">Enter weapon: </label>
+    <input type="text" th:value="${myWeapon}" id="myWeapon" name="myWeapon" placeholder="Catalyst"/>
+    <br/>
+    <input type="submit" value="find!"/>
+</form>
+<br/>
+<div th:if="${weaponList != null}">
+    <div th:each="paramHero : ${weaponList}">
+        <p th:text="${paramHero}"></p>
+    </div>
+</div>
+<hr/>
+
+</body>
+</html>

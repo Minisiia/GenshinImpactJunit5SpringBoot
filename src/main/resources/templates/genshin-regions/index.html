@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<div th:each="reg : ${regions}">
+    <a th:href="@{/genshin-regions/{id}(id=${reg.getId()})}"
+       th:text="${reg.getName() + ', ' + reg.getLocation()}">user</a>
+</div>
+<br/>
+<hr/>
+<a href="/genshin-regions/new">Create new genshin region</a>
+<br/>
+<hr/>
+<a href="/index.html">Home</a>
+<br/>
+<hr/>
+
+<h4>Find some heroes from some part of Teyvat</h4>
+<form th:method="post" th:action="@{/genshin-regions/my-form}">
+    <label for="myVariable">Enter location: </label>
+    <input type="text" th:value="${myVariable}" id="myVariable" name="myVariable" placeholder="Eastern Teyvat"/>
+    <br/>
+    <input type="submit" value="find!"/>
+</form>
+<br/>
+<div th:if="${listOfHeroes != null}">
+    <div th:each="paramHero : ${listOfHeroes}">
+        <p th:text="${paramHero}"/>
+    </div>
+</div>
+<hr/>
+</body>
+</html>

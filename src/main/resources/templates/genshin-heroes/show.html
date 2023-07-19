@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+<p th:text="${hero.getName() + ', ' + hero.getElement() + ', ' + hero.getWeapon() + ', ' + hero.getRarity()}">VALUE</p>
+<br/>
+<hr/>
+<a th:href="@{/genshin-heroes/{id}/edit(id=${hero.getId()})}">Edit</a>
+<br/>
+<hr/>
+<form th:method="DELETE" th:action="@{/genshin-heroes/{id}(id=${hero.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+<hr/>
+<br/>
+<a href="/">Home</a>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New genshinHero</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/genshin-heroes}" th:object="${hero}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br/>
+    <label for="element">Enter element: </label>
+    <input type="text" th:field="*{element}" id="element"/>
+    <div style="color:red" th:if="${#fields.hasErrors('element')}" th:errors="*{element}">Element Error</div>
+    <br/>
+    <label for="weapon">Enter weapon: </label>
+    <input type="text" th:field="*{weapon}" id="weapon"/>
+    <div style="color:red" th:if="${#fields.hasErrors('weapon')}" th:errors="*{weapon}">Weapon Error</div>
+    <br/>
+    <label for="genshinRegionId">Enter region id: </label>
+    <input type="text" th:field="*{genshinRegionId}" id="genshinRegionId"/>
+    <div style="color:red" th:if="${#fields.hasErrors('genshinRegionId')}" th:errors="*{genshinRegionId}">Region Error
+    </div>
+    <br/>
+    <label for="rarity">Enter rarity: </label>
+    <input type="text" th:field="*{rarity}" id="rarity"/>
+    <div style="color:red" th:if="${#fields.hasErrors('rarity')}" th:errors="*{rarity}">Weapon Error</div>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

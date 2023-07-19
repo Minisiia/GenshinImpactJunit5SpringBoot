@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+<p th:text="${region.getName() + ', ' + region.getDescription() + ', ' + region.getLocation()}">VALUE</p>
+<br/>
+<hr/>
+<a th:href="@{/genshin-regions/{id}/edit(id=${region.getId()})}">Edit</a>
+<br/>
+<hr/>
+<form th:method="DELETE" th:action="@{/genshin-regions/{id}(id=${region.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+<hr/>
+<br/>
+<a href="/">Home</a>
+</body>
+</html>
