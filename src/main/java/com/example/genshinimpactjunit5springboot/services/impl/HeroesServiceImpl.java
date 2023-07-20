@@ -50,8 +50,8 @@ public class HeroesServiceImpl implements HeroesService {
         return hero;
     }
 
-    public Hero updateHeroNameById(int id, String name) {
-        return genshinHeroesRepository.updateHeroNameById(name, id);
+    public void updateHeroNameById(int id, String name) {
+        genshinHeroesRepository.updateHeroNameById(name, id);
     }
 
     public void delete(int id) {

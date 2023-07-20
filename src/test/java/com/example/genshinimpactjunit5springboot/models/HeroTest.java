@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HeroTest {
-    private HeroValidator heroValidator = new HeroValidatorImpl();
+    private final HeroValidator heroValidator = new HeroValidatorImpl();
 
     private Hero hero = new Hero();
 

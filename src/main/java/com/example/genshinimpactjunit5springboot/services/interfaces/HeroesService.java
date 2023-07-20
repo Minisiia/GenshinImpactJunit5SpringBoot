@@ -18,7 +18,7 @@ public interface HeroesService {
 
     Hero update(int id, Hero updatedGenshinHero);
 
-    Hero updateHeroNameById(int id, String name);
+    void updateHeroNameById(int id, String name);
 
     void delete(int id);
 
