@@ -2,7 +2,6 @@ package com.example.genshinimpactjunit5springboot.services.impl;
 
 import com.example.genshinimpactjunit5springboot.models.Hero;
 import com.example.genshinimpactjunit5springboot.repositories.HeroesRepository;
-import com.example.genshinimpactjunit5springboot.services.interfaces.HeroesService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,11 +10,11 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
