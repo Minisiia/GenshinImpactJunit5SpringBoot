@@ -19,7 +19,7 @@ public interface HeroesRepository extends JpaRepository<Hero, Integer> {
 
     @Modifying
     @Query(value = "UPDATE genshin_heroes SET name = ? WHERE id = ?", nativeQuery = true)
-    void updateHeroNameById(String name, int id);
+    Hero updateHeroNameById(String name, int id);
 
     @Modifying
     @Query(value = "DELETE FROM genshin_heroes WHERE name = ?", nativeQuery = true)

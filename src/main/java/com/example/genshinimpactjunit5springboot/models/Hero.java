@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 
 @Entity
@@ -46,4 +47,11 @@ public class Hero {
     @Column(name = "rarity")
     private Integer rarity;
 
+    public Hero(String name, String element, String weapon, int genshinRegionId, Integer rarity) {
+        this.name = name;
+        this.element = element;
+        this.weapon = weapon;
+        this.genshinRegionId = genshinRegionId;
+        this.rarity = rarity;
+    }
 }

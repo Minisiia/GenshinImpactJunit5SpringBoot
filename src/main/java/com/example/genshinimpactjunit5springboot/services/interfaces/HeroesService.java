@@ -14,11 +14,11 @@ public interface HeroesService {
 
     List<Hero> findByRarity(Integer rarity);
 
-    void save(Hero genshinHero);
+    Hero save(Hero genshinHero);
 
-    void update(int id, Hero updatedGenshinHero);
+    Hero update(int id, Hero updatedGenshinHero);
 
-    void updateHeroNameById(int id, String name);
+    Hero updateHeroNameById(int id, String name);
 
     void delete(int id);
 

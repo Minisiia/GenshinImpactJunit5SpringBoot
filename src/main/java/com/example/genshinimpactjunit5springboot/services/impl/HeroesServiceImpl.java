@@ -40,17 +40,18 @@ public class HeroesServiceImpl implements HeroesService {
         return findByRarityList;
     }
 
-    public void save(Hero genshinHero) {
-        genshinHeroesRepository.save(genshinHero);
+    public Hero save(Hero genshinHero) {
+       return genshinHeroesRepository.save(genshinHero);
     }
 
-    public void update(int id, Hero updatedGenshinHero) {
+    public Hero update(int id, Hero updatedGenshinHero) {
         updatedGenshinHero.setId(id);
-        genshinHeroesRepository.save(updatedGenshinHero);
+        Hero hero =  genshinHeroesRepository.save(updatedGenshinHero);
+        return hero;
     }
 
-    public void updateHeroNameById(int id, String name) {
-        genshinHeroesRepository.updateHeroNameById(name, id);
+    public Hero updateHeroNameById(int id, String name) {
+        return genshinHeroesRepository.updateHeroNameById(name, id);
     }
 
     public void delete(int id) {
