@@ -39,7 +39,7 @@ public class HeroesControllerTest {
 
     @BeforeEach
     public void init() {
-        hero = new Hero(1, "Liza", "Electro", "Catalyst",1,4);
+        hero = new Hero(1, "Liza", "Electro", "Catalyst", 1, 4);
     }
 
     @Test
@@ -106,7 +106,7 @@ public class HeroesControllerTest {
     @Test
     void updateTest() throws Exception {
         int heroId = 1;
-        Hero updatedHero = new Hero(heroId, "Liza", "Electro", "Catalyst",1,5);
+        Hero updatedHero = new Hero(heroId, "Liza", "Electro", "Catalyst", 1, 5);
         when(heroesService.findOne(heroId)).thenReturn(hero);
 
         mockMvc.perform(patch("/genshin-heroes/{id}", heroId)
@@ -153,44 +153,77 @@ public class HeroesControllerTest {
     }
 
     @Test
-    void updateIndexTest() throws Exception {
+    void updateIndexAllHeroesTest() throws Exception {
         // Prepare test data
         List<Hero> allHeroes = new ArrayList<>();
-        allHeroes.add(new Hero(1,"Diluc", "Pyro", "Claymore",1, 5));
-        allHeroes.add(new Hero(2,"Venti", "Anemo", "Bow",2, 5));
-        allHeroes.add(new Hero(3,"Xingqiu", "Hydro", "Sword",2, 4));
-
-        List<Hero> heroesByName = new ArrayList<>();
-        heroesByName.add(new Hero(1,"Diluc", "Pyro", "Claymore",1, 5));
-
-        List<Hero> heroesByWeapon = new ArrayList<>();
-        heroesByWeapon.add(new Hero(2,"Venti", "Anemo", "Bow",2, 5));
-
-        List<Hero> heroesByRarity = new ArrayList<>();
-        heroesByRarity.add(new Hero(1,"Diluc", "Pyro", "Claymore",1, 5));
-        heroesByRarity.add(new Hero(2,"Venti", "Anemo", "Bow",2, 5));
+        allHeroes.add(new Hero(1, "Diluc", "Pyro", "Claymore", 1, 5));
+        allHeroes.add(new Hero(2, "Venti", "Anemo", "Bow", 2, 5));
+        allHeroes.add(new Hero(3, "Xingqiu", "Hydro", "Sword", 2, 4));
 
         // Mock the service method calls
         when(heroesService.findAll()).thenReturn(allHeroes);
-        when(heroesService.findByName(anyString())).thenReturn(heroesByName);
-       // when(heroesService.getGenshinHeroesWithSomeWeapon(anyString(), anyString())).thenReturn(heroesByWeapon);
-        when(heroesService.findByRarity(anyInt())).thenReturn(heroesByRarity);
 
         mockMvc.perform(get("/genshin-heroes/index"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("genshin-heroes/index"))
-                .andExpect(MockMvcResultMatchers.model().attributeExists("heroes", "heroesByNameList", "weaponList", "heroesByRarityList"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("heroes"))
                 .andExpect(MockMvcResultMatchers.model().attribute("heroes", allHeroes))
-                .andExpect(MockMvcResultMatchers.model().attribute("heroesByNameList", heroesByName))
-              //  .andExpect(MockMvcResultMatchers.model().attribute("weaponList", heroesByWeapon))
-                .andExpect(MockMvcResultMatchers.model().attribute("heroesByRarityList", heroesByRarity));
+                .andDo(print());
+
 
         // Verify that service methods were called with the correct parameters
         verify(heroesService).findAll();
-        verify(heroesService).findByName(isNull());
-     //   verify(heroesService).getGenshinHeroesWithSomeWeapon(isNull(), isNull());
-        verify(heroesService).findByRarity(isNull());
     }
+
+    @Test
+    void updateIndexHeroesByNameListTest() throws Exception {
+        List<Hero> heroesByName = new ArrayList<>();
+        heroesByName.add(new Hero(1, "Diluc", "Pyro", "Claymore", 1, 5));
+
+        when(heroesService.findByName(anyString())).thenReturn(heroesByName);
+
+        mockMvc.perform(get("/genshin-heroes/index?myName=SomeName"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("genshin-heroes/index"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("heroesByNameList"))
+                .andExpect(MockMvcResultMatchers.model().attribute("heroesByNameList", heroesByName));
+
+        verify(heroesService).findByName(anyString());
+    }
+
+    @Test
+    void updateIndexHeroesByWeaponListTest() throws Exception {
+        List<String> heroesByWeapon = new ArrayList<>();
+        heroesByWeapon.add("Kli");
+
+        when(heroesService.getGenshinHeroesWithSomeWeapon(anyString(),anyString())).thenReturn(heroesByWeapon);
+
+        mockMvc.perform(get("/genshin-heroes/index?myLocation=SomeLocation&myWeapon=SomeWeapon"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("genshin-heroes/index"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("weaponList"))
+                .andExpect(MockMvcResultMatchers.model().attribute("weaponList", heroesByWeapon));
+
+        verify(heroesService).getGenshinHeroesWithSomeWeapon(anyString(),anyString());
+    }
+
+    @Test
+    void updateIndexHeroesByRarityListTest() throws Exception {
+        List<Hero> heroesByRarity = new ArrayList<>();
+        heroesByRarity.add(new Hero(1, "Diluc", "Pyro", "Claymore", 1, 5));
+
+        when(heroesService.findByRarity(anyInt())).thenReturn(heroesByRarity);
+
+        mockMvc.perform(get("/genshin-heroes/index?myRarity=5"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("genshin-heroes/index"))
+                .andExpect(model().attributeExists("heroesByRarityList"))
+                .andExpect(model().attribute("heroesByRarityList", heroesByRarity));
+
+        verify(heroesService).findByRarity(anyInt());
+
+    }
+
 
     @Test
     void findByNameTest() throws Exception {
@@ -206,13 +239,13 @@ public class HeroesControllerTest {
 
     @Test
     void findByRarityTest() throws Exception {
-        int myRarity = 4;
+        int myRarity = 5;
 
         mockMvc.perform(post("/genshin-heroes/find-heroes-by-rarity")
                         .param("myRarity", String.valueOf(myRarity)))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrlPattern("/genshin-heroes/index*"))
-                .andExpect(redirectedUrl("/genshin-heroes/index?myRarity=4"))
+                .andExpect(redirectedUrl("/genshin-heroes/index?myRarity=5"))
                 .andDo(print());
     }
 

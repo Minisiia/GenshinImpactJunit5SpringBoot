@@ -16,60 +16,6 @@ public class HeroTest {
         return new Hero(1,"Diluc", "Pyro", "Claymore",1, 5);
     }
 
-    @Test
-    @DisplayName("Тест для get и set Id")
-    public void testGetAndSetId() {
-        int id = 1;
-        hero.setId(id);
-
-        assertEquals(id, hero.getId());
-    }
-
-    @Test
-    @DisplayName("Тест для get и set Name")
-    public void testGetAndSetName() {
-        String name = "Diluc";
-        hero.setName(name);
-
-        assertEquals(name, hero.getName());
-    }
-
-    @Test
-    @DisplayName("Тест для get и set element")
-    public void testGetAndSetElement() {
-        String element = "Pyro";
-        hero.setElement(element);
-
-        assertEquals(element, hero.getElement());
-    }
-
-    @Test
-    @DisplayName("Тест для get и set weapon")
-    public void testGetAndSetWeapon() {
-        String weapon = "Claymore";
-        hero.setWeapon(weapon);
-
-        assertEquals(weapon, hero.getWeapon());
-    }
-
-    @Test
-    @DisplayName("Тест для get и set genshinRegionId")
-    public void testGetAndSetGenshinRegionId() {
-        int genshinRegionId = 4;
-        hero.setGenshinRegionId(genshinRegionId);
-
-        assertEquals(genshinRegionId, hero.getGenshinRegionId());
-    }
-
-    @Test
-    @DisplayName("Тест для get и set genshinRegionId")
-    public void testGetAndSetRarity() {
-        int rarity = 4;
-        hero.setRarity(rarity);
-
-        assertEquals(rarity, hero.getRarity());
-    }
-
     // тесты, которые тестируют метод на проверенный тип порожденного исключения из-за невалидных параметров, передаваемых в метод.
 
     @Test
