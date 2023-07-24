@@ -1,5 +1,6 @@
-package com.example.genshinimpactjunit5springboot.models;
+package com.example.genshinimpactjunit5springboot.validators;
 
+import com.example.genshinimpactjunit5springboot.models.Hero;
 import com.example.genshinimpactjunit5springboot.validators.interfaces.HeroValidator;
 import com.example.genshinimpactjunit5springboot.validators.impl.HeroValidatorImpl;
 import org.junit.jupiter.api.DisplayName;
@@ -7,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HeroTest {
+public class HeroValidatorTest {
     private final HeroValidator heroValidator = new HeroValidatorImpl();
 
     private Hero hero = new Hero();
